@@ -277,20 +277,20 @@ clear
 #function total calculate general total with taxes
 			function subtotal
 			{
-				sum=`echo " scale=2; $1+$2+$3+$d" | bc`
+				sum=$(echo " scale=2; $1+$2+$3+$d" | bc)
 				echo "SUBTOTAL..................................... \$$sum"
 			}
 
 			function taxcal
 			{
 
-				tax=`echo " scale=2; $sum*$t" | bc`
+				tax=$(echo " scale=2; $sum*$t" | bc)
 				echo "TAXES.........................................\$$tax "
 			}
 
 			function total
 			{
-				to=`echo " scale=2; $tax+$sum+$d" | bc`
+				to=$(echo " scale=2; $tax+$sum+$d" | bc)
 				echo "TOTAL........................................ \$$to "
 			}
 #formating the summary
@@ -336,8 +336,8 @@ clear
 			fi
 #Calling functions			
 					subtotal $subtotal1 $subtotal2 $subtotal3
-					taxcal $sum $t
-					total $tax $sum $d 
+					taxcal "$sum" $t
+					total "$tax" "$sum" $d 
 					space
 					sep
 			sleep 12
